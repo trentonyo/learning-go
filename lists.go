@@ -174,10 +174,36 @@ func testStocks1() {
 	print(stocks1([]int{886, 729, 539, 474, 5, 653, 588, 198, 313, 111, 38, 808, 848, 364, 819, 747, 520, 568, 583, 253, 605, 442, 779, 903, 217, 284, 927, 33, 859, 75, 418, 612, 174, 316, 167, 40, 945, 740, 174, 279, 985, 133, 38, 919, 528, 844, 101, 291, 673, 561, 244, 827, 602}))
 }
 
+func stocks2(prices []int) int {
+	profit := 0
+	lowestPrice := prices[0]
+
+	for _, price := range prices[1:] {
+		if price < lowestPrice {
+			lowestPrice = price
+		} else {
+			profit += price - lowestPrice
+			lowestPrice = price
+		}
+	}
+
+	return profit
+}
+
+func testStocks2() {
+	six := stocks2([]int{1, 2, 3, 4, 5, 6, 7})
+	zero := stocks2([]int{7, 6, 5, 4, 3, 2, 1})
+	one := stocks2([]int{7, 6, 5, 4, 3, 2, 3})
+	eight := stocks2([]int{3, 7, 2, 1, 5, 9, 6})
+	println(six, zero, one, eight)
+
+	print(stocks2([]int{886, 729, 539, 474, 5, 653, 588, 198, 313, 111, 38, 808, 848, 364, 819, 747, 520, 568, 583, 253, 605, 442, 779, 903, 217, 284, 927, 33, 859, 75, 418, 612, 174, 316, 167, 40, 945, 740, 174, 279, 985, 133, 38, 919, 528, 844, 101, 291, 673, 561, 244, 827, 602}))
+}
+
 func main() {
 	//testRemoveElement()
 	//testRemoveDuplicates()
 	//testRemoveDuplicates2()
 	//testRotate()
-	testStocks1()
+	testStocks2()
 }
