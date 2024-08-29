@@ -200,10 +200,10 @@ func testStocks2() {
 	print(stocks2([]int{886, 729, 539, 474, 5, 653, 588, 198, 313, 111, 38, 808, 848, 364, 819, 747, 520, 568, 583, 253, 605, 442, 779, 903, 217, 284, 927, 33, 859, 75, 418, 612, 174, 316, 167, 40, 945, 740, 174, 279, 985, 133, 38, 919, 528, 844, 101, 291, 673, 561, 244, 827, 602}))
 }
 
-func main() {
-	//testRemoveElement()
-	//testRemoveDuplicates()
-	//testRemoveDuplicates2()
-	//testRotate()
-	testStocks2()
-}
+// func main() {
+// 	testRemoveElement()
+// 	testRemoveDuplicates()
+// 	testRemoveDuplicates2()
+// 	testRotate()
+// 	testStocks2()
+// }

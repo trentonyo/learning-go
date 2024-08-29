@@ -164,9 +164,56 @@ func testReverseWords() {
 	fmt.Printf("%s := %s\n", reverseWords("  hello world  "), "world hello")
 }
 
+func strStr(haystack string, needle string) int {
+	index := -1
+	match := 0
+
+	if len(needle) > len(haystack) { // edge case: needle too long for haystack
+		return index
+	} else if len(needle) == 0 && len(haystack) == 0 { // edge case: empty strings
+		return 0
+	}
+
+	for i := 0; i < len(haystack); i++ {
+		a := haystack[i]
+		b := needle[match]
+
+		if a == b {
+			if match == 0 {
+				index = i
+			}
+			match++
+
+			if match == len(needle) {
+				break
+			}
+		} else {
+			if match > 0 {
+				i = index // Start the search again from the start of this substring that failed
+			}
+			index = -1
+			match = 0
+		}
+	}
+
+	if match == len(needle) { // Check if we have a complete substr by the end, otherwise fail
+		return index
+	} else {
+		return -1
+	}
+}
+
+func testStrStr() {
+	// fmt.Printf("%d := %d\n", strStr("sadbutsad", "sad"), 0)
+	// fmt.Printf("%d := %d\n", strStr("leetcode", "leeto"), -1)
+	// fmt.Printf("%d := %d\n", strStr("makin banana pancakes", "an"), 7)
+	fmt.Printf("%d := %d\n", strStr("mississippi", "issip"), 4)
+}
+
 func main() {
 	//testRomanToInt()
 	//testLengthOfLastWord()
 	//testLongestCommonPrefix()
-	testReverseWords()
+	// testReverseWords()
+	testStrStr()
 }
