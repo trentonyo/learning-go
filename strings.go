@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"regexp"
+	"strings"
 )
 
 func rn(representation string) int {
@@ -210,10 +212,65 @@ func testStrStr() {
 	fmt.Printf("%d := %d\n", strStr("mississippi", "issip"), 4)
 }
 
-func main() {
-	//testRomanToInt()
-	//testLengthOfLastWord()
-	//testLongestCommonPrefix()
-	// testReverseWords()
-	testStrStr()
+func isPalindrome(s string) bool {
+	// Clean the string
+	r, _ := regexp.Compile("[a-zA-Z0-9]+")
+	rBytes := r.FindAllString(s, -1)
+	cleanStr := strings.Join(rBytes, "")
+	cleanStr = strings.ToLower(cleanStr)
+
+	l := len(cleanStr) - 1
+	for i := 0; i < l; i++ {
+		a := cleanStr[i]
+		b := cleanStr[l-i]
+
+		if a != b {
+			return false
+		}
+
+		if i == l-i {
+			break
+		}
+	}
+
+	return true
 }
+
+func testIsPalindrome() {
+	fmt.Printf("%t := %t\n", isPalindrome("abC d!!cb,a"), true)
+	fmt.Printf("%t := %t\n", isPalindrome("0P"), false)
+}
+
+func isSubsequence(s string, t string) bool {
+	match := 0
+
+	// Edge case, if subsequence is empty
+	if len(s) == 0 {
+		return true
+	}
+
+	for i := 0; i < len(t); i++ {
+		if s[match] == t[i] {
+			match++
+		}
+
+		if len(s) == match {
+			return true
+		}
+	}
+
+	return len(s) == match
+}
+
+func testIsSubsequence() {
+	fmt.Printf("%t := %t\n", isSubsequence("abc", "ahbgdc"), true)
+	fmt.Printf("%t := %t\n", isSubsequence("", "ahbgdc"), false)
+}
+
+// func main() {
+// 	//testRomanToInt()
+// 	//testLengthOfLastWord()
+// 	//testLongestCommonPrefix()
+// 	// testReverseWords()
+// 	testIsSubsequence()
+// }
