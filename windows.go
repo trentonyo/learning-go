@@ -100,6 +100,6 @@ func testLengthOfLongestSubstring() {
 	fmt.Printf("%d := %d\n", lengthOfLongestSubstring("pwwkekekekewkaewkeww"), 4)
 }
 
-func main() {
-	testLengthOfLongestSubstring()
-}
+// func main() {
+// 	testLengthOfLongestSubstring()
+// }
