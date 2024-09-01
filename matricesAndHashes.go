@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func canConstruct(ransomNote string, magazine string) bool {
@@ -263,6 +264,77 @@ func testIsHappy() {
 	fmt.Printf("%t := %t\n", isHappy(2), false)
 }
 
+func containsNearbyDuplicate(nums []int, k int) bool {
+	var encountered = make(map[int]int) // Store each encountered value's index
+
+	for i, v := range nums {
+		place := encountered[v]
+
+		if place == 0 {
+			encountered[v] = i + 1
+		} else {
+			otherI := encountered[v] - 1
+			if i-otherI <= k {
+				return true
+			} else {
+				encountered[v] = i + 1 // Update the index to this, the latest seen index of v
+			}
+		}
+	}
+
+	return false
+}
+
+func testContainsNearbyDuplicate() {
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 9}, 3), true)
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 2, 1}, 0), false)
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 2, 1}, 1), false)
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 2, 3, 1}, 3), true)
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 0, 1, 1}, 1), true)
+	fmt.Printf("%t := %t\n", containsNearbyDuplicate([]int{1, 2, 3, 1, 2, 3}, 2), false)
+}
+
+func strHelper(l int, r int, nums []int) string {
+	lC := nums[l]
+	rC := nums[r]
+	output := strconv.Itoa(lC)
+
+	if r-l > 0 {
+		output += "->" + strconv.Itoa(rC)
+	}
+
+	return output
+}
+
+func summaryRanges(nums []int) []string {
+	output := []string{}
+
+	// Edge case, empty list
+	if len(nums) == 0 {
+		return output
+	}
+
+	l := 0
+
+	last := nums[0]
+	for i, curr := range nums[1:] {
+		i++
+		// Add an entry to the output if the current number is not contiguous
+		if curr-last != 1 {
+			output = append(output, strHelper(l, i-1, nums))
+			l = i
+		}
+		last = nums[i]
+	}
+	output = append(output, strHelper(l, len(nums)-1, nums))
+
+	return output
+}
+
+func testSummaryRanges() {
+	fmt.Printf("%v := %v\n", summaryRanges([]int{0, 1, 2, 4, 5, 7}), []string{"0->2", "4->5", "7"})
+}
+
 func main() {
-	testIsHappy()
+	testSummaryRanges()
 }
