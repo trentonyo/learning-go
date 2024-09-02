@@ -335,6 +335,6 @@ func testSummaryRanges() {
 	fmt.Printf("%v := %v\n", summaryRanges([]int{0, 1, 2, 4, 5, 7}), []string{"0->2", "4->5", "7"})
 }
 
-func main() {
-	testSummaryRanges()
-}
+// func main() {
+// 	testSummaryRanges()
+// }
