@@ -148,6 +148,6 @@ func testIsValid() {
 	fmt.Printf("%v := %v\n", isValid("([])"), true)
 }
 
-func main() {
-	testSimplifyPath()
-}
+// func main() {
+// 	testSimplifyPath()
+// }
