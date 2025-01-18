@@ -11,10 +11,10 @@ var BRACKETS = map[string]string{
 	"{": "}",
 }
 
-type StackMaker interface {
-	Push(v string)
-	Pop() string
-}
+//type StackMaker interface {
+//	Push(v string)
+//	Pop() string
+//}
 
 type StringStack struct {
 	internal []string
